@@ -84,3 +84,15 @@ class ColorGame:
             # Update score label
             self.scoreLabel.config(text="Score: " + str(self.score))
 
+    def countdown(self):
+        # If time still remains
+        if self.timeleft > 0:
+            self.timeleft -= 1  # Decrease time by 1 second
+
+            # Update time label
+            self.timeLabel.config(text="Time left: " + str(self.timeleft))
+
+            # Call this function again after 1 second
+            self.master.after(1000, self.countdown)
+        else:
+            self.end_game()  # When time runs out, end the game
