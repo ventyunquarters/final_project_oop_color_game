@@ -96,3 +96,11 @@ class ColorGame:
             self.master.after(1000, self.countdown)
         else:
             self.end_game()  # When time runs out, end the game
+
+    def end_game(self):
+        # Display final message and freeze input
+        self.label.config(text="You Win!", fg="green")  # Victory message
+        self.scoreLabel.config(text=f"Final Score: {self.score}", font=('Helvetica', 14, 'bold'))
+        self.timeLabel.config(text="Time's up!", fg="red")
+        self.entry.config(state='disabled')  # Disable further input
+        self.sound.play_gameover()  # Play game over sound
