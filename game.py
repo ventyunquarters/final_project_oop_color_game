@@ -55,3 +55,32 @@ class ColorGame:
         self.entry = tk.Entry(self.frame, font=('Helvetica', 14), justify='center')
         self.entry.pack()
         self.entry.focus_set()  # Put cursor in the entry box by default
+
+    def start_game(self, event):
+        # Start the countdown timer on first press of Enter
+        if self.timeleft == 30:
+            self.countdown()
+
+        # Show the first color word
+        self.next_colour()
+
+    def next_colour(self):
+        # Only continue if game is still running
+        if self.timeleft > 0:
+            self.entry.focus_set()  # Keep entry box focused for user input
+
+            # Check if user's input matches the color (not the text)
+            if self.entry.get().lower() == self.colours[1].lower():
+                self.score += 1        # Increase score
+                self.sound.play_correct()  # Play correct-answer sound
+
+            self.entry.delete(0, tk.END)  # Clear input box
+
+            random.shuffle(self.colours)  # Randomize color order
+
+            # Display the next color word and set its font color
+            self.label.config(fg=self.colours[1], text=self.colours[0])
+
+            # Update score label
+            self.scoreLabel.config(text="Score: " + str(self.score))
+
