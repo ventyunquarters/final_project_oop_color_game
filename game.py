@@ -18,3 +18,11 @@ class ColorGame:
         # List of color names to use in the game
         self.colours = ['Red', 'Blue', 'Green', 'Pink', 'Black',
                         'Yellow', 'Orange', 'White', 'Purple', 'Brown']
+
+        self.score = 0           # Initialize score
+        self.timeleft = 30       # Countdown timer starts at 30 seconds
+
+        self.setup_ui()          # Call method to build the GUI layout
+
+        # Bind the Enter key to start the game
+        self.master.bind('<Return>', self.start_game)
